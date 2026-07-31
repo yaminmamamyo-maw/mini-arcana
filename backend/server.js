@@ -1,17 +1,28 @@
 const express = require ('express')
 const cors = require('cors')
 
-const app = express()
+require("dotenv").config();
 
-app.use(cors())
-app.use(express.json())
+const readingRoutes = require("./routes/readingRoutes");
 
-app.get('/api/hello', (req, res) => {
-    res.json({
-        message: 'Hello from arcana backend!',
-    })
-})
+const app = express();
 
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000')
-})
+app.use(cors());
+app.use(express.json());
+
+app.use(
+    "/api/readings",
+    readingRoutes
+);
+
+app.get('/', (req, res) => {
+    res.send(
+        "Arcana API running"
+    );
+});
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
