@@ -38,7 +38,7 @@ function App() {
     async function loadReadings() {
       try {
         const response = await fetch(
-          'http://localhost:3000/api/readings'
+          `${import.meta.env.VITE_API_URL}/api/readings`
         )
 
         if (!response.ok) {
@@ -72,7 +72,7 @@ function App() {
 
     try {
       const response = await fetch(
-        'http://localhost:3000/api/readings',
+        `${import.meta.env.VITE_API_URL}/api/readings`,
         {
           method: 'POST',
 
